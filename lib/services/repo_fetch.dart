@@ -1,6 +1,7 @@
-import 'package:github_search_app/models/repo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../models/repo.dart';
 
 class Fetch {
   Future<Repository> fetchRepo() async {

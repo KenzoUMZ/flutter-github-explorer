@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:github_search_app/screens/details.dart';
-import 'package:github_search_app/services/repo_fetch.dart';
-import 'package:github_search_app/models/repo.dart';
+import '../models/repo.dart';
+import '../services/repo_fetch.dart';
+import 'details.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class MyApp extends StatefulWidget {
