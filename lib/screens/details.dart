@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter/services.dart';
 
 class Details extends StatelessWidget {
   const Details(
@@ -39,27 +39,27 @@ class Details extends StatelessWidget {
           child: ListView(
             children: [
               cardBuilder(Colors.purple, Colors.white, 25, 15, name,
-                  description, true, Image.network(avatar)),
+                  description, true, Image.network(avatar), false),
               cardBuilder(
-                Colors.deepPurpleAccent,
-                Colors.white,
-                25,
-                15,
-                'Watchers',
-                watchers.toString(),
-                false,
-                const Icon(Icons.remove_red_eye, size: 35),
-              ),
+                  Colors.deepPurpleAccent,
+                  Colors.white,
+                  25,
+                  15,
+                  'Watchers',
+                  watchers.toString(),
+                  false,
+                  const Icon(Icons.remove_red_eye, size: 35),
+                  false),
               cardBuilder(
-                Colors.deepPurpleAccent,
-                Colors.white,
-                25,
-                15,
-                'Stars',
-                stars.toString(),
-                false,
-                const Icon(Icons.star, size: 35),
-              ),
+                  Colors.deepPurpleAccent,
+                  Colors.white,
+                  25,
+                  15,
+                  'Stars',
+                  stars.toString(),
+                  false,
+                  const Icon(Icons.star, size: 35),
+                  false),
               cardBuilder(
                 Colors.deepPurpleAccent,
                 Colors.white,
@@ -72,42 +72,43 @@ class Details extends StatelessWidget {
                   Icons.fork_right,
                   size: 35,
                 ),
+                false,
               ),
               cardBuilder(
-                Colors.deepPurpleAccent,
-                Colors.white,
-                25,
-                15,
-                'Open Issues',
-                issues.toString(),
-                false,
-                const Icon(Icons.report_problem, size: 35),
-              ),
+                  Colors.deepPurpleAccent,
+                  Colors.white,
+                  25,
+                  15,
+                  'Open Issues',
+                  issues.toString(),
+                  false,
+                  const Icon(Icons.report_problem, size: 35),
+                  false),
               cardBuilder(
-                Colors.deepPurpleAccent,
-                Colors.white,
-                25,
-                15,
-                'Copy URL',
-                url,
-                false,
-                const Icon(Icons.link, size: 35),
-              )
+                  Colors.deepPurpleAccent,
+                  Colors.white,
+                  25,
+                  15,
+                  'Copy URL',
+                  url,
+                  false,
+                  const Icon(Icons.link, size: 35),
+                  true)
             ],
           ),
         ));
   }
 
   Card cardBuilder(
-    Color bg,
-    Color txtColor,
-    double titleSize,
-    double subSize,
-    String title,
-    String subtitle,
-    bool isThreeLine,
-    Widget leading,
-  ) {
+      Color bg,
+      Color txtColor,
+      double titleSize,
+      double subSize,
+      String title,
+      String subtitle,
+      bool isThreeLine,
+      Widget leading,
+      bool copyInfo) {
     return Card(
       color: bg,
       child: ListTile(
@@ -125,6 +126,11 @@ class Details extends StatelessWidget {
               fontWeight: FontWeight.normal),
         ),
         isThreeLine: false,
+        onTap: copyInfo
+            ? () {
+                Clipboard.setData(ClipboardData(text: subtitle));
+              }
+            : () {},
       ),
     );
   }
